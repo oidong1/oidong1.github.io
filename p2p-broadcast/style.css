@@ -43,7 +43,7 @@ video {
 }
 #my-video {
   margin-top: 15px;
-  width: 280px;
+  width: 100%;
   height: auto;
   background-color: #eee;
 }
@@ -51,8 +51,7 @@ video {
 #their-video {
   position: -webkit-sticky;
   width: 100%;
-  height: 75%;
-  max-height: 480px;
+  height: 100%;
   background-color: #eee;
 }
 
