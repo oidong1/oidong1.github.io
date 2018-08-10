@@ -42,7 +42,6 @@ video {
   height: 100%;
 }
 #my-video {
-  margin-top: 15px;
   width: 100%;
   height: auto;
   background-color: #eee;
@@ -56,7 +55,6 @@ video {
 }
 
 #video-container {
-  padding: 25px;
   text-align: center;
 }
 
