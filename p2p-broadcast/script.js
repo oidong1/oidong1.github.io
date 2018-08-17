@@ -6,6 +6,13 @@ $(function() {
     debug: 3,
   });
 
+  var iphoneConstraints = {
+    mandatory: {
+      minWidth: 667,
+      minHeight: 335
+    }
+  };
+
   let localStream;
 
   peer.on('open', () => {
@@ -25,7 +32,7 @@ $(function() {
   // Click handlers setup
   $('#broadcast').on('submit', e => {
     e.preventDefault();
-    navigator.mediaDevices.getUserMedia({audio: true, video: true}).then(stream => {
+    navigator.mediaDevices.getUserMedia({audio: true, video: iphoneConstraints}).then(stream => {
       $('#video').get(0).srcObject = stream;
       localStream = stream;
     }).catch(err => {
