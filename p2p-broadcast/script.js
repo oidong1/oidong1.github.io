@@ -8,8 +8,8 @@ $(function() {
 
   var iphoneConstraints = {
     mandatory: {
-      minWidth: 667,
-      minHeight: 335
+      minWidth: 335,
+      minHeight: 667
     }
   };
 
