@@ -60,7 +60,7 @@ $(function() {
   $('#broadcast').on('submit', e => {
     const videoSource = $('#videoSource').val();
     e.preventDefault();
-    navigator.mediaDevices.getUserMedia({audio: true, video: { mandatory: { deviceId: videoSource?{exact: videoSource}:undefined, minWidth: 335, minHeight: 667}}}).then(stream => {
+    navigator.mediaDevices.getUserMedia({audio: true, video: { deviceId: videoSource?{exact: videoSource}:undefined, width: 335, height: 667}}).then(stream => {
       $('#video').get(0).srcObject = stream;
       localStream = stream;
     }).catch(err => {
