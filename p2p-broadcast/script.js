@@ -6,12 +6,6 @@ $(function() {
     debug: 3,
   });
 
-  var iphoneConstraints = {
-    mandatory: {
-      minWidth: 335,
-      minHeight: 667
-    }
-  };
 
   let localStream;
 
@@ -29,10 +23,45 @@ $(function() {
     alert(err.message);
   });
 
+  const videoSelect = $('#videoSource');
+  const selectors = [videoSelect];
+  navigator.mediaDevices.enumerateDevices()
+    .then(deviceInfos => {
+      console.log(deviceInfos)
+      const values = selectors.map(select => select.val() || '');
+      selectors.forEach(select => {
+        const children = select.children(':first');
+        while (children.length) {
+          select.remove(children);
+        }
+      });
+
+      for (let i = 0; i !== deviceInfos.length; ++i) {
+        const deviceInfo = deviceInfos[i];
+        const option = $('<option>').val(deviceInfo.deviceId);
+
+        if (deviceInfo.kind === 'audioinput') {
+        } else if (deviceInfo.kind === 'videoinput') {
+          option.text(deviceInfo.label ||
+            'Camera ' + (videoSelect.children().length + 1));
+          videoSelect.append(option);
+        }
+      }
+
+      selectors.forEach((select, selectorIndex) => {
+        if (Array.prototype.slice.call(select.children()).some(n => {
+          return n.value === values[selectorIndex];
+        })) {
+          select.val(values[selectorIndex]);
+        }
+      });
+    });
+
   // Click handlers setup
   $('#broadcast').on('submit', e => {
+    const videoSource = $('#videoSource').val();
     e.preventDefault();
-    navigator.mediaDevices.getUserMedia({audio: true, video: iphoneConstraints}).then(stream => {
+    navigator.mediaDevices.getUserMedia({audio: true, video: { deviceId: videoSource?{exact: videoSource}:undefined, mandatory: { minWidth: 335, minHeight: 667}}}).then(stream => {
       $('#video').get(0).srcObject = stream;
       localStream = stream;
     }).catch(err => {

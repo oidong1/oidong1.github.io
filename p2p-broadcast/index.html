@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <title>SkyWay - Broadcast example</title>
   <link rel="stylesheet" href="style.css">
-  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="//cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
   <script type="text/javascript" src="../key.js"></script>
   <script type="text/javascript" src="script.js"></script>
@@ -28,6 +28,9 @@
       <form id="broadcast" class="pure-form">
         <button href="#" class="pure-button pure-button-success" type="submit">Broadcast</button>
       </form>
+      <div class="select">
+        <label for="videoSource">Video source: </label><select id="videoSource"></select>
+      </div>
       <form id="watch" class="pure-form">
         <input type="text" placeholder="Call user id..." id="callto-id">
         <button href="#" class="pure-button pure-button-success" type="submit">Watch</button>
