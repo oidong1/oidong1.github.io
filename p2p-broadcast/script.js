@@ -25,8 +25,7 @@ $(function() {
 
   const videoSelect = $('#videoSource');
   const selectors = [videoSelect];
-  navigator.mediaDevices.enumerateDevices()
-    .then(deviceInfos => {
+  navigator.mediaDevices.enumerateDevices().then(deviceInfos => {
       console.log(deviceInfos)
       const values = selectors.map(select => select.val() || '');
       selectors.forEach(select => {
@@ -61,7 +60,7 @@ $(function() {
   $('#broadcast').on('submit', e => {
     const videoSource = $('#videoSource').val();
     e.preventDefault();
-    navigator.mediaDevices.getUserMedia({audio: true, video: { deviceId: videoSource?{exact: videoSource}:undefined, mandatory: { minWidth: 335, minHeight: 667}}}).then(stream => {
+    navigator.mediaDevices.getUserMedia({audio: true, video: { mandatory: { deviceId: videoSource?{exact: videoSource}:undefined, minWidth: 335, minHeight: 667}}}).then(stream => {
       $('#video').get(0).srcObject = stream;
       localStream = stream;
     }).catch(err => {
